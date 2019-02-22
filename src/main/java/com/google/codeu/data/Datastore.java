@@ -64,6 +64,12 @@ public class Datastore {
     return getMessagesHelper(results); 
   }
 
+   /**
+   * Gets messages posted by all users.
+   *
+   * @return a list of messages posted by all users, or empty list if there are no
+   * messages posted. List is sorted by time descending.
+   */
   public List<Message> getAllMessages(){
   List<Message> messages = new ArrayList<>();
 
@@ -74,7 +80,12 @@ public class Datastore {
   return getMessagesHelper(results); 
  }
 
- 
+ /**
+   * Helper function for getMessages and getAllMessages. 
+   *
+   * @return a list of messages, or empty list if there are no
+   * messages posted. List is sorted by time descending.
+   */
  private List<Message> getMessagesHelper(PreparedQuery results) {
   List<Message> messages = new ArrayList<>();
 
