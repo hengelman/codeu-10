@@ -84,7 +84,7 @@ public class Datastore {
    * Helper function for getMessages and getAllMessages. 
    *
    * @return a list of messages, or empty list if there are no
-   * messages posted. List is sorted by time descending.
+   * messages posted. 
    */
  private List<Message> getMessagesHelper(PreparedQuery results) {
   List<Message> messages = new ArrayList<>();
