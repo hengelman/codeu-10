@@ -30,3 +30,9 @@ nav li {
   display: inline-block;
   margin-right: 10px
 }
+
+/* Style the team names */
+/* TODO(kyra): change this style */
+.team-names {
+  color: magenta;
+}
