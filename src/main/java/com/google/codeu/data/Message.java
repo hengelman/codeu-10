@@ -18,24 +18,13 @@ package com.google.codeu.data;
 
 import java.util.UUID;
 
-/** The sting recipient helps to display messages received from another user. */
+/** A single message posted from a user to a recipient */
 public class Message {
 
-  private String recipient;
-  public Message(String user, String text, String recipient) {
-  this(UUID.randomUUID(), user, text, System.currentTimeMillis(), recipient);
-}
-
-public Message(UUID id, String user, String text, long timestamp, String recipient) {
-  this.id = id;
-  this.user = user;
-  this.text = text;
-  this.timestamp = timestamp;
-  this.recipient = recipient;
-}
 
   private UUID id;
   private String user;
+  private String recipient;
   private String text;
   private long timestamp;
 
@@ -44,15 +33,16 @@ public Message(UUID id, String user, String text, long timestamp, String recipie
    * Constructs a new {@link Message} posted by {@code user} with {@code text} content. Generates a
    * random ID and uses the current system time for the creation time.
    */
-  public Message(String user, String text) {
-    this(UUID.randomUUID(), user, text, System.currentTimeMillis());
+  public Message(String user, String text, String recipient) {
+    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), recipient);
   }
 
-  public Message(UUID id, String user, String text, long timestamp) {
+  public Message(UUID id, String user, String text, long timestamp, String recipient) {
     this.id = id;
     this.user = user;
     this.text = text;
     this.timestamp = timestamp;
+    this.recipient = recipient;
   }
 
   public UUID getId() {
