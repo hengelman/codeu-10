@@ -42,6 +42,7 @@ public class Datastore {
     messageEntity.setProperty("user", message.getUser());
     messageEntity.setProperty("text", message.getText());
     messageEntity.setProperty("timestamp", message.getTimestamp());
+    messageEntity.setProperty("recipient", message.getRecipient());
 
     datastore.put(messageEntity);
   }
@@ -61,7 +62,7 @@ public class Datastore {
             .addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
-    return getMessagesHelper(results); 
+    return getMessagesHelper(results);
   }
 
    /**
@@ -77,14 +78,14 @@ public class Datastore {
     .addSort("timestamp", SortDirection.DESCENDING);
   PreparedQuery results = datastore.prepare(query);
 
-  return getMessagesHelper(results); 
+  return getMessagesHelper(results);
  }
 
  /**
-   * Helper function for getMessages and getAllMessages. 
+   * Helper function for getMessages and getAllMessages.
    *
    * @return a list of messages, or empty list if there are no
-   * messages posted. 
+   * messages posted.
    */
  private List<Message> getMessagesHelper(PreparedQuery results) {
   List<Message> messages = new ArrayList<>();
@@ -94,10 +95,11 @@ public class Datastore {
     String idString = entity.getKey().getName();
     UUID id = UUID.fromString(idString);
     String user = (String) entity.getProperty("user");
+    String recipient = (String) entity.getProperty("recipient");
     String text = (String) entity.getProperty("text");
     long timestamp = (long) entity.getProperty("timestamp");
 
-    Message message = new Message(id, user, text, timestamp);
+    Message message = new Message(id, user, text, timestamp, recipient);
     messages.add(message);
    } catch (Exception e) {
     System.err.println("Error reading message.");
@@ -105,7 +107,7 @@ public class Datastore {
     e.printStackTrace();
    }
   }
-  return messages; 
+  return messages;
  }
 
 }
