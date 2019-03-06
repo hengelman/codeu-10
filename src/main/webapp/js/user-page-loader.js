@@ -70,6 +70,7 @@ function fetchMessages() {
 
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
+  addLinks(); 
   setPageTitle();
   showMessageFormIfLoggedIn()
   fetchMessages();
