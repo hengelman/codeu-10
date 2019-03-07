@@ -70,12 +70,7 @@ function fetchMessages() {
 
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
-<<<<<<< HEAD
   addLinks(); 
-=======
-  addFeedLinktoNavigation();
-  addLoginOrLogoutLinkToNavigation();
->>>>>>> 2029e34cefdd1c5b2a55008bd06b634a60c8f3c2
   setPageTitle();
   showMessageFormIfLoggedIn()
   fetchMessages();
