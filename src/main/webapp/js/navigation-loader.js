@@ -66,3 +66,20 @@ function createLink(url, text) {
   linkElement.href = url;
   return linkElement;
 }
+
+function addFeedLinktoNavigation() {
+  const navigationElement = document.getElementById('navigation');
+  if (!navigationElement) {
+    console.warn('Navigation element not found!');
+    return;
+  }
+
+  navigationElement.appendChild(createListItem(
+      createLink('/feed.html', 'Feed')));
+}
+
+/* adds all necessary links to the top of the page */
+function addLinks() {
+  addLoginOrLogoutLinkToNavigation();
+  addFeedLinktoNavigation();
+}
