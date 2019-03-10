@@ -36,9 +36,6 @@
 
 /* Give the message body a margin so the text
    isn't too close to the border. */
-.message-body {
-  margin: 5px;
-}
 
 .message-body img {
   display: block;
