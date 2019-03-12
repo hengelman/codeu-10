@@ -74,5 +74,6 @@ function buildUI() {
   setPageTitle();
   showMessageFormIfLoggedIn();
   fetchMessages();
-  ClassicEditor.create(document.getElementById('message-input')); 
+  const config = { removePlugins: ['ImageUpload', 'Table', 'MediaEmbed'] };
+  ClassicEditor.create(document.getElementById('message-input'), config);
 }
