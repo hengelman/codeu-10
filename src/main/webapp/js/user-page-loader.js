@@ -70,8 +70,9 @@ function fetchMessages() {
 
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
-  addLinks(); 
+  addLinks();
   setPageTitle();
-  showMessageFormIfLoggedIn()
+  showMessageFormIfLoggedIn();
   fetchMessages();
+  ClassicEditor.create(document.getElementById('message-input')); 
 }
