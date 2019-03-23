@@ -22,6 +22,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +45,20 @@ public class Datastore {
     messageEntity.setProperty("text", message.getText());
     messageEntity.setProperty("timestamp", message.getTimestamp());
     messageEntity.setProperty("recipient", message.getRecipient());
+    messageEntity.setProperty("ID", message.getId().toString());
 
     datastore.put(messageEntity);
+  }
+
+  /** Deletes the Message in Datastore. */
+  public void deleteMessage(String ID) {
+
+    //queries for the message based on its UUID
+    Filter propertyFilter = new FilterPredicate("ID", FilterOperator.EQUAL, ID);
+    Query q = new Query("Message").setFilter(propertyFilter);
+    PreparedQuery pq = datastore.prepare(q);
+    Entity storedMessage = pq.asSingleEntity();
+    datastore.delete(storedMessage.getKey());
   }
 
   /**
