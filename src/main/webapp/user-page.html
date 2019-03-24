@@ -35,9 +35,13 @@ limitations under the License.
     <h1 id="page-title">User Page</h1>
 
     <form id="message-form" action="/messages" method="POST" class="hidden">
+      Subject:
+      <br/>
+      <textarea name="subject-text" id="message-subject"></textarea>
+      <br/>
       Enter a new message:
       <br/>
-      <textarea name="text" id="message-input"></textarea>
+      <textarea name="message-text" id="message-input"></textarea>
       <br/>
       <input type="submit" value="Submit">
     </form>

@@ -33,9 +33,6 @@ public class DeleteMessageServlet extends HttpServlet{
      String messageID = request.getParameter("message-id");
      datastore.deleteMessage(messageID);
 
-     System.out.print("before redirect");
      response.sendRedirect("/user-page.html?user=" + user);
-     System.out.print("after redirect");
-
  }
 }
