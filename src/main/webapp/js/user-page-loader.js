@@ -38,7 +38,8 @@ function showMessageFormIfLoggedIn() {
         return response.json();
       })
       .then((loginStatus) => {
-        if (loginStatus.isLoggedIn) {
+        if (loginStatus.isLoggedIn && loginStatus.username == parameterUsername) {
+          fetchImageUploadUrlAndShowForm();
           const messageForm = document.getElementById('message-form');
         messageForm.action = '/messages?recipient=' + parameterUsername;
           messageForm.classList.remove('hidden');
@@ -68,12 +69,25 @@ function fetchMessages() {
       });
 }
 
+/** Fetches image and adds to the page. */
+function fetchImageUploadUrlAndShowForm() {
+  fetch('/image-upload-url')
+      .then((response) => {
+        return response.text();
+      })
+      .then((imageUploadUrl) => {
+        const messageForm = document.getElementById('message-form');
+        messageForm.action = imageUploadUrl;
+        messageForm.classList.remove('hidden');
+      });
+}
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   addLinks();
   setPageTitle();
   showMessageFormIfLoggedIn();
   fetchMessages();
+  fetchImageUploadUrlAndShowForm();
   const config = { removePlugins: ['ImageUpload', 'Table', 'MediaEmbed'] };
   ClassicEditor.create(document.getElementById('message-input'), config);
 }
