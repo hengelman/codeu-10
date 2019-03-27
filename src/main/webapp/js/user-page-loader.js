@@ -64,6 +64,18 @@ function fetchMessages() {
         }
         messages.forEach((message) => {
           const messageDiv = buildMessageDiv(message);
+
+          const deleteButton = document.createElement('button');
+          deleteButton.value = message.id;
+          deleteButton.name = "message-id";
+          deleteButton.innerText = "Delete";
+
+          const deleteForm = document.createElement('form');
+          deleteForm.action = "/delete";
+          deleteForm.method = "GET";
+          deleteForm.appendChild(deleteButton);
+
+          messageDiv.firstChild.appendChild(deleteForm);
           messagesContainer.appendChild(messageDiv);
         });
       });
