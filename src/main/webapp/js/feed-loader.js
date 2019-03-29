@@ -1,8 +1,14 @@
 
+// Get ?user=XYZ parameter value
+const urlParams = new URLSearchParams(window.location.search);
+const searchParameter = urlParams.get('q');
 
   // Fetch messages and add them to the page.
   function fetchMessages(){
-    const url = '/feed';
+    var url = '/feed';
+    if (searchParameter) {
+      url += "?search-text=" + searchParameter;
+    }
     fetch(url).then((response) => {
       return response.json();
     }).then((messages) => {
@@ -19,7 +25,6 @@
       });
     });
   }
-
 
   // Fetch data and populate the UI of the page.
   function buildUI(){
