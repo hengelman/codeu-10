@@ -69,7 +69,6 @@ public class Datastore {
    *     messages with the subject. List is sorted by time descending.
    */
   public List<Message> getMessagesbySubjectSearch(String searchCriteria) {
-    List<Message> messages = new ArrayList<>();
 
     Query query =
         new Query("Message")
@@ -86,7 +85,6 @@ public class Datastore {
    *     message. List is sorted by time descending.
    */
   public List<Message> getMessages(String recipient) {
-    List<Message> messages = new ArrayList<>();
 
     Query query =
         new Query("Message")
@@ -103,7 +101,6 @@ public class Datastore {
    * messages posted. List is sorted by time descending.
    */
   public List<Message> getAllMessages(){
-  List<Message> messages = new ArrayList<>();
 
   Query query = new Query("Message")
     .addSort("timestamp", SortDirection.DESCENDING);
