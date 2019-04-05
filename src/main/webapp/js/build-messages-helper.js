@@ -3,12 +3,12 @@
 function buildMessageDiv(message){
  const subjectDiv = document.createElement('div');
  subjectDiv.classList.add("left-align");
- subjectDiv.innerText = "Subject: "; 
+ subjectDiv.innerText = "Subject: ";
  subjectDiv.appendChild(document.createTextNode(message.subject));
 
  const usernameDiv = document.createElement('div');
  usernameDiv.classList.add("left-align");
- usernameDiv.appendChild(document.createTextNode(message.user));
+ usernameDiv.appendChild(createLink('/user-page.html?user=' + message.user, message.user));
 
  const timeDiv = document.createElement('div');
  timeDiv.classList.add('right-align');
