@@ -34,7 +34,7 @@ limitations under the License.
     </nav>
     <h1 id="page-title">User Page</h1>
 
-    <form id="message-form" action="/messages" method="POST" class="hidden">
+    <form id="message-form" action="/messages" method="POST" class="hidden" enctype="multipart/form-data">
       Subject:
       <br/>
       <textarea name="subject-text" id="message-subject"></textarea>
@@ -42,6 +42,9 @@ limitations under the License.
       Enter a new message:
       <br/>
       <textarea name="message-text" id="message-input"></textarea>
+      <br/>
+      Add an image to your message:
+      <input type="file" name="image">
       <br/>
       <input type="submit" value="Submit">
     </form>
