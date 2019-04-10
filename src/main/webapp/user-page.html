@@ -22,9 +22,9 @@ limitations under the License.
     <link rel="stylesheet" href="/css/user-page.css">
     <title>User Page</title>
     <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
-    <script src="/js/feed-loader.js"></script>
     <script src="/js/build-messages-helper.js"></script>
     <script src="/js/navigation-loader.js"></script>
+    <script src="/js/user-page-loader.js"></script>
   </head>
   <body onload="buildUI();">
     <header>
@@ -41,7 +41,7 @@ limitations under the License.
     </header>
     <div id="content" class="feed-container">
       <h1 id="page-title" class="text-center">User Page</h1>
-      <form id="message-form" action="/messages" method="POST" class="hidden">
+      <form id="message-form" action="/messages" method="POST">
         Subject:
         <br/>
         <textarea name="subject-text" id="message-subject"></textarea>
@@ -55,7 +55,7 @@ limitations under the License.
       <hr/>
       <div id="message-container">Loading...</div>
     </div>
-    <footer class ="footer fixed-bottom small text-center mt-auto py-3">
+    <footer class ="footer small text-center mt-auto py-3">
       <div class="container">
         <span class="text-muted">
           Google CodeU Spring 2019.
