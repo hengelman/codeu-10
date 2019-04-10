@@ -8,7 +8,7 @@ function buildMessageDiv(message){
 
  const usernameDiv = document.createElement('div');
  usernameDiv.classList.add("left-align");
- usernameDiv.appendChild(createLink('/user-page.html?user=' + message.user, message.user));
+ usernameDiv.appendChild(createLinkMessage('/user-page.html?user=' + message.user, message.user));
 
  const timeDiv = document.createElement('div');
  timeDiv.classList.add('right-align');
