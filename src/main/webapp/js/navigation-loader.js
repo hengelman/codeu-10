@@ -51,6 +51,7 @@ function addLoginOrLogoutLinkToNavigation() {
 function createListItem(childElement) {
   const listItemElement = document.createElement('li');
   listItemElement.appendChild(childElement);
+  listItemElement.classList.add("nav-link");
   return listItemElement;
 }
 
@@ -64,6 +65,8 @@ function createLink(url, text) {
   const linkElement = document.createElement('a');
   linkElement.appendChild(document.createTextNode(text));
   linkElement.href = url;
+  linkElement.classList.add("btn");
+  linkElement.classList.add("btn-light");
   return linkElement;
 }
 
