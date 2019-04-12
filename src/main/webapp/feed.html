@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Message Feed</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/user-page.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Public Feed</title>
     <script src="/js/feed-loader.js"></script>
     <script src="/js/build-messages-helper.js"></script>
     <script src="/js/navigation-loader.js"></script>
   </head>
   <body onload="buildUI()">
-    <nav>
-      <ul id="navigation">
-        <li><a href="/">Home</a></li>
-      </ul>
-    </nav>
-    <div id="content">
-      <h1>Message Feed</h1>
-      <form id="search-form" action="/feed.html" method="GET">
-        Enter a class name:
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul id="navigation" class="navbar-nav mr-auto">
+            <li class="nav-link"><a href="/" class="btn btn-light">Home</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div id="content" class="feed-container">
+      <h1 class="text-center">Public Feed</h1>
+      <form id="search-form" action="/feed.html" method="GET" class="form-group">
+        <label>Enter a class name:</label>
+        <input name="q" id="search-input" class="form-control"></input>
+        <small class="form-text text-muted">Be sure to enter the class name exactly as it appears on the course guide.</small>
         <br/>
-        <textarea name="q" id="search-input"></textarea>
-        <br/>
-        <input type="submit" value="Search">
+        <input type="submit" value="Search" class="btn btn-outline-secondary">
       </form>
       <hr/>
       <div id="message-container">Loading...</div>
     </div>
+    <footer class ="footer small text-center mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">
+          Google CodeU Spring 2019.
+          Hannah Engelman. Stanley Nwakamma. Kyra Busser.
+        </span>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
