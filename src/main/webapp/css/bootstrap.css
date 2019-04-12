@@ -48,7 +48,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-article, aside, footer, figcaption, figure, header, hgroup, main, nav, section {
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
@@ -555,14 +555,6 @@ pre code {
   margin-left: auto;
 }
 
-.feed-container {
-  width: 75%;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-top: 30px;
-  margin-right: auto;
-  margin-left: auto;
-}
 
 @media (min-width: 576px) {
   .container {
@@ -7810,15 +7802,6 @@ button.bg-dark:focus {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 1020;
-  }
-}
-
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-  .sticky-bottom {
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 0;
     z-index: 1020;
   }
 }
