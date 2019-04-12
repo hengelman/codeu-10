@@ -36,3 +36,12 @@ nav li {
 .team-names {
   color: magenta;
 }
+
+.feed-container {
+  width: 75%;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 30px;
+  margin-right: auto;
+  margin-left: auto;
+}
