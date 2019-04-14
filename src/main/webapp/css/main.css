@@ -15,9 +15,7 @@
  */
 
 /* Prevent the page from becoming too wide. */
-body {
-  max-width: 600px;
-}
+
 
 /* Remove bullet points from navigation bar. */
 nav ul {
@@ -31,14 +29,9 @@ nav li {
   margin-right: 10px
 }
 
-/* Style the team names */
-/* TODO(kyra): change this style */
-.team-names {
-  color: magenta;
-}
 
 .feed-container {
-  width: 75%;
+  width: 70%;
   padding-right: 15px;
   padding-left: 15px;
   padding-top: 30px;
