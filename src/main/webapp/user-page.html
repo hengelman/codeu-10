@@ -43,15 +43,14 @@ limitations under the License.
     <div id="content" class="feed-container">
       <h1 id="page-title" class="text-center">User Page</h1>
       <form id="message-form" action="/messages" method="POST">
-        Subject:
+        <label>Class:</label>
+        <input name="subject-text" id="message-subject" class="form-control"></input>
+        <small class="form-text text-muted">Be sure to enter the class name exactly as it appears on the course guide.</small>
         <br/>
-        <textarea name="subject-text" id="message-subject"></textarea>
+        <label>Enter your message:</label>
+        <textarea name="message-text" id="message-input" class="form-control"></textarea>
         <br/>
-        Enter a new message:
-        <br/>
-        <textarea name="message-text" id="message-input"></textarea>
-        <br/>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Post" class="btn btn-outline-secondary">
       </form>
       <hr/>
       <div id="message-container">Loading...</div>
