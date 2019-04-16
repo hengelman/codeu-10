@@ -68,6 +68,10 @@ public class Message {
   }
 
   public String getSubject() {
-    return subject; 
+    return subject;
+  }
+
+  public boolean getPublic() {
+    return user.equals(recipient);
   }
 }
