@@ -24,6 +24,8 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
+import com.google.appengine.api.datastore.Query.CompositeFilter;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,7 @@ public class Datastore {
     messageEntity.setProperty("recipient", message.getRecipient());
     messageEntity.setProperty("ID", message.getId().toString());
     messageEntity.setProperty("subject", message.getSubject());
+    messageEntity.setProperty("isPublic", message.getPublic());
 
     datastore.put(messageEntity);
   }
@@ -70,9 +73,13 @@ public class Datastore {
    */
   public List<Message> getMessagesbySubjectSearch(String searchCriteria) {
 
+    Filter searchFilter = new Query.FilterPredicate("subject", FilterOperator.EQUAL, searchCriteria);
+    Filter publicFilter = new Query.FilterPredicate("isPublic", FilterOperator.EQUAL, true);
+    CompositeFilter compFilter = CompositeFilterOperator.and(searchFilter, publicFilter);
+
     Query query =
         new Query("Message")
-            .setFilter(new Query.FilterPredicate("subject", FilterOperator.EQUAL, searchCriteria))
+            .setFilter(compFilter)
             .addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     return getMessagesHelper(results);
@@ -86,11 +93,16 @@ public class Datastore {
    */
   public List<Message> getMessages(String recipient) {
 
+    Filter recipientFilter = new Query.FilterPredicate("recipient", FilterOperator.EQUAL, recipient);
+    Filter publicFilter = new Query.FilterPredicate("isPublic", FilterOperator.EQUAL, true);
+    CompositeFilter compFilter = CompositeFilterOperator.and(recipientFilter, publicFilter);
+
     Query query =
         new Query("Message")
-            .setFilter(new Query.FilterPredicate("recipient", FilterOperator.EQUAL, recipient))
+            .setFilter(compFilter)
             .addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
+
     return getMessagesHelper(results);
   }
 
@@ -103,6 +115,7 @@ public class Datastore {
   public List<Message> getAllMessages(){
 
   Query query = new Query("Message")
+    .setFilter(new Query.FilterPredicate("isPublic", FilterOperator.EQUAL, true))
     .addSort("timestamp", SortDirection.DESCENDING);
   PreparedQuery results = datastore.prepare(query);
 
