@@ -76,7 +76,9 @@ function createLinkMessage(url, text) {
   const linkElement = document.createElement('a');
   linkElement.appendChild(document.createTextNode(text));
   linkElement.href = url;
-  linkElement.classList.add("btn");
+  linkElement.classList.add("btn")
+  linkElement.classList.add("btn-outline-dark");
+  linkElement.classList.add("btn-sm");
   return linkElement;
 }
 
