@@ -28,7 +28,6 @@ public class Message {
   private String text;
   private String subject;
   private long timestamp;
-  private boolean isPublic;
 
   /**
    * Constructs a new {@link Message} posted by {@code user} with {@code text} content. Generates a
@@ -46,12 +45,6 @@ public class Message {
     this.timestamp = timestamp;
     this.recipient = recipient;
     this.subject = subject;
-
-    if (user.equals(recipient)) {
-      this.isPublic = true;
-    } else {
-      this.isPublic = false;
-    }
   }
 
   public UUID getId() {
@@ -79,6 +72,6 @@ public class Message {
   }
 
   public boolean getPublic() {
-    return isPublic;
+    return user.equals(recipient);
   }
 }

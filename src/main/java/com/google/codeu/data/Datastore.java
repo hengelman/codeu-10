@@ -31,10 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
 
   private DatastoreService datastore;
+  private static final Filter PUBLIC_FILTER_TRUE = new Query.FilterPredicate("isPublic", FilterOperator.EQUAL, true);
 
   public Datastore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
@@ -66,16 +68,15 @@ public class Datastore {
   }
 
   /**
-   * Gets messages with a given subject line.
+   * Gets messages with a given subject line that are public.
    *
-   * @return a list of messages with the given subject, or empty list if there are no
-   *     messages with the subject. List is sorted by time descending.
+   * @return a list of messages with the given subject that are public, or empty list if there are no
+   *     messages with the subject that are public. List is sorted by time descending.
    */
   public List<Message> getMessagesbySubjectSearch(String searchCriteria) {
 
     Filter searchFilter = new Query.FilterPredicate("subject", FilterOperator.EQUAL, searchCriteria);
-    Filter publicFilter = new Query.FilterPredicate("isPublic", FilterOperator.EQUAL, true);
-    CompositeFilter compFilter = CompositeFilterOperator.and(searchFilter, publicFilter);
+    CompositeFilter compFilter = CompositeFilterOperator.and(searchFilter, PUBLIC_FILTER_TRUE);
 
     Query query =
         new Query("Message")
@@ -86,16 +87,15 @@ public class Datastore {
   }
 
   /**
-   * Gets messages posted by a specific user.
+   * Gets messages posted by a specific user that are public.
    *
-   * @return a list of messages posted by the user, or empty list if user has never posted a
-   *     message. List is sorted by time descending.
+   * @return a list of messages posted by the user that are public, or empty list if user has never posted a
+   *     message or if they are all private. List is sorted by time descending.
    */
-  public List<Message> getMessages(String recipient) {
+  public List<Message> getUserMessages(String recipient) {
 
     Filter recipientFilter = new Query.FilterPredicate("recipient", FilterOperator.EQUAL, recipient);
-    Filter publicFilter = new Query.FilterPredicate("isPublic", FilterOperator.EQUAL, true);
-    CompositeFilter compFilter = CompositeFilterOperator.and(recipientFilter, publicFilter);
+    CompositeFilter compFilter = CompositeFilterOperator.and(recipientFilter, PUBLIC_FILTER_TRUE);
 
     Query query =
         new Query("Message")
@@ -107,15 +107,15 @@ public class Datastore {
   }
 
    /**
-   * Gets messages posted by all users.
+   * Gets messages posted by all users that are public.
    *
-   * @return a list of messages posted by all users, or empty list if there are no
-   * messages posted. List is sorted by time descending.
+   * @return a list of messages posted by all users that are public, or empty list if there are no
+   * messages posted or if they are all private. List is sorted by time descending.
    */
-  public List<Message> getAllMessages(){
+  public List<Message> getAllPublicMessages(){
 
   Query query = new Query("Message")
-    .setFilter(new Query.FilterPredicate("isPublic", FilterOperator.EQUAL, true))
+    .setFilter(PUBLIC_FILTER_TRUE)
     .addSort("timestamp", SortDirection.DESCENDING);
   PreparedQuery results = datastore.prepare(query);
 
@@ -123,7 +123,7 @@ public class Datastore {
  }
 
  /**
-   * Helper function for getMessages and getAllMessages.
+   * Helper function for getUserMessages, getAllPublicMessages, and getMessagesbySubjectSearch.
    *
    * @return a list of messages, or empty list if there are no
    * messages posted.

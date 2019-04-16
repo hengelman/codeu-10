@@ -37,7 +37,7 @@ public class MessageFeedServlet extends HttpServlet{
   String searchCriteria = request.getParameter("search-text");
   List<Message> messages;
   if (searchCriteria == null) {
-    messages = datastore.getAllMessages();
+    messages = datastore.getAllPublicMessages();
   } else {
     messages = datastore.getMessagesbySubjectSearch(searchCriteria);
   }
