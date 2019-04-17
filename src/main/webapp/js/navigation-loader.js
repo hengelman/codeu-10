@@ -34,6 +34,9 @@ function addLoginOrLogoutLinkToNavigation() {
           navigationElement.appendChild(createListItem(createLink(
               '/user-page.html?user=' + loginStatus.username, 'Your Page')));
 
+          navigationElement.appendChild(createListItem(createLink(
+            '/direct-messages.html?user=' + loginStatus.username, 'Direct Messages')));
+
           navigationElement.appendChild(
               createListItem(createLink('/logout', 'Logout')));
         } else {
