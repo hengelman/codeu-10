@@ -40,12 +40,11 @@ function showMessageFormIfLoggedIn() {
       .then((loginStatus) => {
         if (loginStatus.isLoggedIn) {
           const messageForm = document.getElementById('message-form');
-        messageForm.action = '/messages?recipient=' + parameterUsername;
+          messageForm.action = '/messages?recipient=' + parameterUsername;
           messageForm.classList.remove('hidden');
         }
       });
-
-    }
+}
 
 /** Fetches messages and add them to the page. */
 function fetchMessages() {
@@ -58,6 +57,7 @@ function fetchMessages() {
         const messagesContainer = document.getElementById('message-container');
         if (messages.length == 0) {
           messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
+          messagesContainer.classList.add("text-center");
         } else {
           messagesContainer.innerHTML = '';
         }
@@ -69,7 +69,7 @@ function fetchMessages() {
           deleteButton.name = "message-id";
           deleteButton.innerText = "Delete";
           deleteButton.classList.add("btn");
-          deleteButton.classList.add("btn-outline-dark"); 
+          deleteButton.classList.add("btn-outline-dark");
 
           const deleteForm = document.createElement('form');
           deleteForm.action = "/delete";
