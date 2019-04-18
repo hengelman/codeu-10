@@ -69,7 +69,8 @@ function fetchMessages() {
           deleteButton.name = "message-id";
           deleteButton.innerText = "Delete";
           deleteButton.classList.add("btn");
-          deleteButton.classList.add("btn-outline-dark");
+          deleteButton.classList.add("btn-outline-header");
+          deleteButton.classList.add("btn-sm"); 
 
           const deleteForm = document.createElement('form');
           deleteForm.action = "/delete";
