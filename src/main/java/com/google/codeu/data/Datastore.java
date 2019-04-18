@@ -37,6 +37,8 @@ public class Datastore {
 
   private DatastoreService datastore;
   private static final Filter PUBLIC_FILTER_TRUE = new Query.FilterPredicate("isPublic", FilterOperator.EQUAL, true);
+  private static final Filter PUBLIC_FILTER_FALSE = new Query.FilterPredicate("isPublic", FilterOperator.EQUAL, false);
+
 
   public Datastore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
@@ -121,6 +123,28 @@ public class Datastore {
 
   return getMessagesHelper(results);
  }
+
+ /**
+ * Gets messages posted by the user to another user, or posted by another user to the user.
+ *
+ * @return a list of messages posted by another to the user or posted by the user to another, or empty list if there are no
+ * direct messages to or from the user. List is sorted by time descending.
+ */
+public List<Message> getDirectMessages(String user) {
+
+  Filter senderFilter = new Query.FilterPredicate("user", FilterOperator.EQUAL, user);
+  Filter recipientFilter = new Query.FilterPredicate("recipient", FilterOperator.EQUAL, user);
+  CompositeFilter userFilter = CompositeFilterOperator.or(senderFilter, recipientFilter);
+  CompositeFilter compFilter = CompositeFilterOperator.and(userFilter, PUBLIC_FILTER_FALSE);
+
+  Query query =
+      new Query("Message")
+          .setFilter(compFilter)
+          .addSort("timestamp", SortDirection.DESCENDING);
+  PreparedQuery results = datastore.prepare(query);
+
+  return getMessagesHelper(results);
+}
 
  /**
    * Helper function for getUserMessages, getAllPublicMessages, and getMessagesbySubjectSearch.
