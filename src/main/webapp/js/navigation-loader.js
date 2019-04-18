@@ -80,7 +80,7 @@ function createLinkMessage(url, text) {
   linkElement.appendChild(document.createTextNode(text));
   linkElement.href = url;
   linkElement.classList.add("btn")
-  linkElement.classList.add("btn-outline-dark");
+  linkElement.classList.add("btn-outline-header");
   linkElement.classList.add("btn-sm");
   return linkElement;
 }

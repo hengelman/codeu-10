@@ -32,6 +32,7 @@
 .message-header {
   border-bottom: thin solid black;
   padding: 5px;
+  background-color: #deecf9 !important;
 }
 
 /* Give the message body a margin so the text
@@ -50,4 +51,26 @@
    user is not logged in or viewing their own page. */
 .hidden {
   display: none;
+}
+
+.btn-outline-forms {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-outline-forms:hover {
+  color: #fff;
+  background-color: #24384c;
+  border-color: #6c757d;
+}
+
+.btn-outline-header {
+  color: #343a40;
+  border-color: #343a40;
+}
+
+.btn-outline-header:hover {
+  color: #fff;
+  background-color: #24384c;
+  border-color: #343a40;
 }

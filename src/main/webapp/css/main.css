@@ -38,3 +38,7 @@ nav li {
   margin-right: auto;
   margin-left: auto;
 }
+
+.nav-bg {
+  background-color: #24384c !important;
+}
