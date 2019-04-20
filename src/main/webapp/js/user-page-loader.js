@@ -48,6 +48,17 @@ function showMessageFormIfLoggedIn() {
 
 /** Fetches messages and add them to the page. */
 function fetchMessages() {
+  var canDelete = false;
+  fetch('/login-status')
+      .then((response) => {
+        return response.json();
+      })
+      .then((loginStatus) => {
+        if (loginStatus.isLoggedIn && loginStatus.username == parameterUsername) {
+          canDelete = true;
+        }
+      });
+
   const url = '/messages?user=' + parameterUsername;
   fetch(url)
       .then((response) => {
@@ -64,20 +75,23 @@ function fetchMessages() {
         messages.forEach((message) => {
           const messageDiv = buildMessageDiv(message);
 
-          const deleteButton = document.createElement('button');
-          deleteButton.value = message.id;
-          deleteButton.name = "message-id";
-          deleteButton.innerText = "Delete";
-          deleteButton.classList.add("btn");
-          deleteButton.classList.add("btn-outline-header");
-          deleteButton.classList.add("btn-sm"); 
+          if (canDelete) {
+            const deleteButton = document.createElement('button');
+            deleteButton.value = message.id;
+            deleteButton.name = "message-id";
+            deleteButton.innerText = "Delete";
+            deleteButton.classList.add("btn");
+            deleteButton.classList.add("btn-outline-header");
+            deleteButton.classList.add("btn-sm");
 
-          const deleteForm = document.createElement('form');
-          deleteForm.action = "/delete";
-          deleteForm.method = "GET";
-          deleteForm.appendChild(deleteButton);
+            const deleteForm = document.createElement('form');
+            deleteForm.action = "/delete";
+            deleteForm.method = "GET";
+            deleteForm.appendChild(deleteButton);
 
-          messageDiv.firstChild.appendChild(deleteForm);
+            messageDiv.firstChild.appendChild(deleteForm);
+          }
+
           messagesContainer.appendChild(messageDiv);
         });
       });
